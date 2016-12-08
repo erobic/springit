@@ -3,3 +3,7 @@
 build
 .gitignore.swp
 *.iml
+gradle
+gradlew
+gradlew.bat
+
