@@ -1,7 +1,10 @@
 package com.erobic.springit.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,6 +13,14 @@ import javax.servlet.FilterRegistration;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -27,22 +38,22 @@ public class HomeController {
         return "This is where I experiment with Spring!";
     }
 
-    @RequestMapping("/autowired/servlet_context")
+    @RequestMapping("/servlet_context/using_Autowired")
     public Map servletContextByAutowired() {
         return fromServletContext(servletContext);
     }
 
-    @RequestMapping("/servlet_request/servlet_context")
+    @RequestMapping("/servlet_context/using_HttpServletRequest")
     public Map servletContextByServletRequest(HttpServletRequest request) {
         return fromServletContext(request.getServletContext());
     }
 
-    @RequestMapping("/response_status/not_found")
+    @RequestMapping("/not_found/ResponseStatus")
     @ResponseStatus(code = HttpStatus.NOT_FOUND)
     public void notFoundByResponseStatus() {
     }
 
-    @RequestMapping("/servlet_response/not_found")
+    @RequestMapping("/not_found/using_HttpServletResponse")
     public void notFoundByServletResponse(HttpServletResponse response) {
         response.setStatus(HttpStatus.NOT_FOUND.value());
     }
@@ -56,4 +67,27 @@ public class HomeController {
         map.put("filterNames", filterNames);
         return map;
     }
+
+    @RequestMapping(value = "/images/tree/using_produces",
+            produces = MediaType.IMAGE_JPEG_VALUE)
+    public byte[] treeUsingProduces() throws IOException, URISyntaxException {
+        URL url = servletContext.getResource("/resources/images/tree.jpg");
+        Path path = Paths.get(url.toURI());
+        return java.nio.file.Files.readAllBytes(path);
+    }
+
+    @RequestMapping(value = "/images/tree/using_ResponseEntity")
+    public ResponseEntity<byte[]> treeUsingResponseEntity() throws IOException, URISyntaxException {
+        byte[] bytes = Files.readAllBytes(
+                Paths.get(
+                        servletContext.getResource("/resources/images/tree.jpg").toURI()
+                ));
+
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setContentType(MediaType.IMAGE_JPEG);
+
+        ResponseEntity<byte[]> responseEntity = new ResponseEntity<byte[]>(bytes, httpHeaders, HttpStatus.OK);
+        return responseEntity;
+    }
+
 }
