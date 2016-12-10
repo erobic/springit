@@ -1,5 +1,6 @@
-package com.erobic.springit.controller;
+package com.erobic.springit.controllers;
 
+import com.erobic.springit.services.SampleInitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -9,13 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.FilterRegistration;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Files;
@@ -90,4 +88,11 @@ public class HomeController {
         return responseEntity;
     }
 
+    @Autowired
+    SampleInitializingBean sampleInitializingBean;
+
+    @RequestMapping(value = "/initializing_bean")
+    public Boolean initializingBean() {
+        return sampleInitializingBean.getInitialized();
+    }
 }

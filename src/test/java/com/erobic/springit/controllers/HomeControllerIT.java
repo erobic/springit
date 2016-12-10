@@ -1,4 +1,4 @@
-package com.erobic.springit.controller;
+package com.erobic.springit.controllers;
 
 import org.junit.Before;
 import org.junit.Test;

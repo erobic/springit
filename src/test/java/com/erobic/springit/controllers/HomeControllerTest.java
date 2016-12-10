@@ -1,6 +1,5 @@
-package com.erobic.springit.controller;
+package com.erobic.springit.controllers;
 
-import junit.framework.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
