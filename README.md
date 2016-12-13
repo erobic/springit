@@ -1,5 +1,7 @@
 # springit
 
+[![Build Status](https://travis-ci.org/erobic/springit.svg?branch=master)](https://travis-ci.org/erobic/springit)
+
 A sample project demonstrating these features:
 
 1. RESTful web services
