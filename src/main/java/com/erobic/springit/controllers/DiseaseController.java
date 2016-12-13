@@ -1,9 +1,8 @@
 package com.erobic.springit.controllers;
 
 import com.erobic.springit.models.Disease;
-import com.erobic.springit.services.DiseaseService;
+import com.erobic.springit.services.TransactionDemoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,16 +14,16 @@ import org.springframework.web.bind.annotation.*;
 public class DiseaseController extends AbstractController {
 
     @Autowired
-    DiseaseService diseaseService;
+    TransactionDemoService transactionDemoService;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public ResponseEntity<Disease> get(Long id) {
-        return ResponseEntity.ok(diseaseService.findById(id));
+        return ResponseEntity.ok(transactionDemoService.findById(id));
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
     public ResponseEntity<Long> create(@RequestBody Disease disease) {
-        disease = diseaseService.save(disease);
+        disease = transactionDemoService.save(disease);
         return created(disease.getId());
     }
 }
