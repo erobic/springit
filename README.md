@@ -1,5 +1,7 @@
 # springit
 
+https://travis-ci.org/erobic/springit.svg?branch=master
+
 A sample project demonstrating these features:
 
 1. RESTful web services
