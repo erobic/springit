@@ -35,6 +35,7 @@ dependencies {
     // end::jetty[]
     // tag::actuator[]
     compile("org.springframework.boot:spring-boot-starter-actuator")
+    compile("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.8.5")
     // end::actuator[]
     runtime("org.hsqldb:hsqldb")
     testCompile("junit:junit")

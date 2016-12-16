@@ -1,6 +1,7 @@
 package com.erobic.springit.generator;
 
 import com.erobic.springit.models.Disease;
+import com.erobic.springit.models.JacksonExperiment;
 
 import java.time.LocalDateTime;
 
@@ -14,5 +15,12 @@ public class DataGenerator {
         disease.setName("name " + localDateTime);
         disease.setDescription("description " + localDateTime);
         return disease;
+    }
+
+    public static JacksonExperiment generateJacksonExperiment(){
+        JacksonExperiment obj =new JacksonExperiment();
+        obj.setHidden("hidden field");
+        obj.setCreatedOn(LocalDateTime.now());
+        return obj;
     }
 }
