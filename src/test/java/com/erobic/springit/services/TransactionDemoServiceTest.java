@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.junit.Assert.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -26,7 +26,7 @@ public class TransactionDemoServiceTest {
         //when
         Disease savedDisease = transactionDemoService.transactionalSave(disease, false);
         //then
-        assertNotNull(diseaseRepository.findByName(savedDisease.getName()));
+        assertThat(diseaseRepository.findByName(savedDisease.getName())).isNotNull();
     }
 
     @Test
@@ -35,9 +35,10 @@ public class TransactionDemoServiceTest {
         Disease disease = DataGenerator.generateDisease();
         try {
             transactionDemoService.transactionalSave(disease, true);
-        } catch (Exception e) {}
+        } catch (Exception e) {
+        }
         //then
-        assertNull(diseaseRepository.findByName(disease.getName()));
+        assertThat(diseaseRepository.findByName(disease.getName())).isNull();
     }
 
     @Test
@@ -46,8 +47,9 @@ public class TransactionDemoServiceTest {
         Disease disease = DataGenerator.generateDisease();
         try {
             transactionDemoService.nonTransactionalSave(disease, true);
-        } catch (Exception e) {}
+        } catch (Exception e) {
+        }
         //then
-        assertNotNull(diseaseRepository.findByName(disease.getName()));
+        assertThat(diseaseRepository.findByName(disease.getName())).isNotNull();
     }
 }

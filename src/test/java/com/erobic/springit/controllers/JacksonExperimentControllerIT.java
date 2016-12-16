@@ -16,10 +16,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.net.URL;
-import java.util.Map;
 
-import static org.hamcrest.core.IsEqual.equalTo;
-import static org.junit.Assert.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -42,7 +40,7 @@ public class JacksonExperimentControllerIT {
     }
 
     @Test
-    public void testGet_ignoredFieldShouldBeNull() throws Exception {
+    public void testGet_shouldGetNonIgnoredFields() throws Exception {
         //given
         JacksonExperiment obj1 = DataGenerator.generateJacksonExperiment();
         obj1 = jacksonExperimentRepository.saveAndFlush(obj1);
@@ -50,34 +48,20 @@ public class JacksonExperimentControllerIT {
         ResponseEntity<JacksonExperiment> response = template.getForEntity(base.toString() + "/" + obj1.getId(), JacksonExperiment.class);
         JacksonExperiment afterGet = response.getBody();
         //then
-        assertEquals(obj1.getId(), afterGet.getId());
-        assertNull(afterGet.getHidden());
+        assertThat(obj1.getId()).isEqualTo(afterGet.getId());
+        assertThat(afterGet.getHidden()).isNull();
     }
 
     @Test
-    public void testCreate_ignoredFieldShouldNotBePopulated() throws Exception {
+    public void testCreate_shouldPopulateNonIgnoredFields() throws Exception {
         //given
         JacksonExperiment obj = DataGenerator.generateJacksonExperiment();
         //when
         Long id = template.postForEntity(base.toString(), obj, CreatedResponse.class).getBody().getId();
         //then
-        assertNotNull(id);
+        assertThat(id).isNotNull();
         JacksonExperiment saved = jacksonExperimentRepository.findOne(id);
-        assertEquals(saved.getCreatedOn(), obj.getCreatedOn());
-        assertNull(saved.getHidden());
-    }
-
-    @Test
-    public void testCreate_whenObjectHasBeenDeserializedAndSerializedAgain() throws Exception {
-        //given
-        JacksonExperiment obj = DataGenerator.generateJacksonExperiment();
-        String json = objectMapper.writeValueAsString(obj);
-        //when
-        Long id = template.postForEntity(base.toString(), objectMapper.readValue(json, JacksonExperiment.class), CreatedResponse.class).getBody().getId();
-        //then
-        assertNotNull(id);
-        JacksonExperiment saved = jacksonExperimentRepository.findOne(id);
-        assertEquals(saved.getCreatedOn(), obj.getCreatedOn());
-        assertNull(saved.getHidden());
+        assertThat(saved.getCreatedOn()).isEqualTo(obj.getCreatedOn());
+        assertThat(saved.getHidden()).isNullOrEmpty();
     }
 }
