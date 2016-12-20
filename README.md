@@ -1,4 +1,4 @@
-# the-beautiful-spring
+# springit
 
 [![Build Status](https://travis-ci.org/erobic/springit.svg?branch=master)](https://travis-ci.org/erobic/springit)
 
