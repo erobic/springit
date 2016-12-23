@@ -36,6 +36,9 @@ public class HomeController {
         return "This is where I experiment with Spring!";
     }
 
+    @RequestMapping("/secure_home")
+    public String secureHome() { return "secure_home"; }
+
     @RequestMapping("/servlet_context/using_Autowired")
     public Map servletContextByAutowired() {
         return fromServletContext(servletContext);
