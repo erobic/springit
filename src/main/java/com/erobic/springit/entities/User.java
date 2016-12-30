@@ -1,4 +1,4 @@
-package com.erobic.springit.models;
+package com.erobic.springit.entities;
 
 import org.hibernate.validator.constraints.NotEmpty;
 

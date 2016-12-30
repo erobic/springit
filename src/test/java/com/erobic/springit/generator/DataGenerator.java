@@ -1,9 +1,9 @@
 package com.erobic.springit.generator;
 
-import com.erobic.springit.dtos.UserRequest;
-import com.erobic.springit.models.Disease;
-import com.erobic.springit.models.JacksonExperiment;
-import com.erobic.springit.models.User;
+import com.erobic.springit.remote_models.UserRequest;
+import com.erobic.springit.entities.Disease;
+import com.erobic.springit.entities.JacksonExperiment;
+import com.erobic.springit.entities.User;
 import com.erobic.springit.utils.DateTimeUtil;
 
 import java.time.LocalDateTime;

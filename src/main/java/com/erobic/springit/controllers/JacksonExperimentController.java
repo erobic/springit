@@ -1,6 +1,6 @@
 package com.erobic.springit.controllers;
 
-import com.erobic.springit.models.JacksonExperiment;
+import com.erobic.springit.entities.JacksonExperiment;
 import com.erobic.springit.repositories.JacksonExperimentRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

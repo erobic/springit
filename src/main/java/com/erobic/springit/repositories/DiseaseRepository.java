@@ -1,6 +1,6 @@
 package com.erobic.springit.repositories;
 
-import com.erobic.springit.models.Disease;
+import com.erobic.springit.entities.Disease;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,6 +1,6 @@
 package com.erobic.springit.services;
 
-import com.erobic.springit.models.Disease;
+import com.erobic.springit.entities.Disease;
 import com.erobic.springit.repositories.DiseaseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

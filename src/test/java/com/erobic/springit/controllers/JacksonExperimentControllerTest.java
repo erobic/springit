@@ -1,25 +1,21 @@
 package com.erobic.springit.controllers;
 
 import com.erobic.springit.generator.DataGenerator;
-import com.erobic.springit.models.JacksonExperiment;
+import com.erobic.springit.entities.JacksonExperiment;
 import com.erobic.springit.repositories.JacksonExperimentRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import static org.hamcrest.core.IsEqual.equalTo;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Matchers.isNull;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 

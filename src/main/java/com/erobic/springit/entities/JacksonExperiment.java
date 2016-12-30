@@ -1,7 +1,6 @@
-package com.erobic.springit.models;
+package com.erobic.springit.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

@@ -1,4 +1,4 @@
-package com.erobic.springit.dtos;
+package com.erobic.springit.remote_models;
 
 /**
  * Created by robik on 12/16/16.

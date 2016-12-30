@@ -1,6 +1,6 @@
 package com.erobic.springit.services;
 
-import com.erobic.springit.models.CachedEntity;
+import com.erobic.springit.entities.CachedEntity;
 import com.erobic.springit.repositories.CachedEntityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;

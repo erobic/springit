@@ -1,9 +1,9 @@
 package com.erobic.springit.services;
 
-import com.erobic.springit.dtos.UserRequest;
+import com.erobic.springit.remote_models.UserRequest;
 import com.erobic.springit.exceptions.UsernameExistsException;
 import com.erobic.springit.generator.DataGenerator;
-import com.erobic.springit.models.User;
+import com.erobic.springit.entities.User;
 import com.erobic.springit.repositories.UserRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;

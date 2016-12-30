@@ -1,6 +1,6 @@
 package com.erobic.springit.repositories;
 
-import com.erobic.springit.models.CachedEntity;
+import com.erobic.springit.entities.CachedEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

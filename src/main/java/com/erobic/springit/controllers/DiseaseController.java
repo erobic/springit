@@ -1,6 +1,6 @@
 package com.erobic.springit.controllers;
 
-import com.erobic.springit.models.Disease;
+import com.erobic.springit.entities.Disease;
 import com.erobic.springit.services.TransactionDemoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

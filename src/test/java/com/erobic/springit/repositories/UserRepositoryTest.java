@@ -1,7 +1,7 @@
 package com.erobic.springit.repositories;
 
 import com.erobic.springit.generator.DataGenerator;
-import com.erobic.springit.models.User;
+import com.erobic.springit.entities.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

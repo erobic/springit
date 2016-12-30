@@ -1,7 +1,7 @@
 package com.erobic.springit.services;
 
 import com.erobic.springit.generator.DataGenerator;
-import com.erobic.springit.models.Disease;
+import com.erobic.springit.entities.Disease;
 import com.erobic.springit.repositories.DiseaseRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;

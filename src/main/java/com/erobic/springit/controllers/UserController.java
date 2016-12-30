@@ -1,9 +1,8 @@
 package com.erobic.springit.controllers;
 
-import com.erobic.springit.dtos.CreatedResponse;
-import com.erobic.springit.dtos.UserRequest;
-import com.erobic.springit.exceptions.UsernameExistsException;
-import com.erobic.springit.models.User;
+import com.erobic.springit.remote_models.CreatedResponse;
+import com.erobic.springit.remote_models.UserRequest;
+import com.erobic.springit.entities.User;
 import com.erobic.springit.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

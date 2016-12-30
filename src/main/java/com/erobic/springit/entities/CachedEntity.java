@@ -1,4 +1,4 @@
-package com.erobic.springit.models;
+package com.erobic.springit.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
