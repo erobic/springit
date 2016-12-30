@@ -14,7 +14,13 @@ public class ResearchResultJob {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Scheduled(cron = "0,30 * * * * *")
-    public void researchResultJob() {
+    public void cronJob() {
         logger.info("Publishing new research results...");
+    }
+
+    @Scheduled(fixedDelay = 10000l)
+    public void fixedDelayJob() throws InterruptedException {
+        logger.info("Delayed by 10 seconds, sleeping for 20 seconds");
+        Thread.sleep(20000l);
     }
 }
