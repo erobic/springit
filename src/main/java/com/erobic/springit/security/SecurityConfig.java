@@ -16,6 +16,7 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import java.util.Arrays;
 
@@ -28,6 +29,8 @@ import java.util.Arrays;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     UserService userService;
+    @Autowired
+    BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -41,10 +44,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticationEntryPoint(authenticationEntryPoint())
                 .and()
                 .authorizeRequests()
-                .antMatchers("/", "/home").permitAll()
+                .antMatchers("/", "/home", "/users").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                        //.addFilterBefore(authenticationFilter(), UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(authenticationFilter(), UsernamePasswordAuthenticationFilter.class)
                 .logout()
                 .logoutUrl("/logout")
                 .deleteCookies()
@@ -78,11 +81,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new RestLogoutSuccessHandler();
     }
 
-    @Bean(name = "bcryptPasswordEncoder")
-    public BCryptPasswordEncoder bCryptPasswordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
     @Bean(name = "saltSource")
     public ReflectionSaltSource saltSource() {
         ReflectionSaltSource reflectionSaltSource = new ReflectionSaltSource();
@@ -93,10 +91,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean(name = "authenticationManager")
     public AuthenticationManager customAuthenticationManager() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-        provider.setPasswordEncoder(bCryptPasswordEncoder());
+        provider.setPasswordEncoder(bCryptPasswordEncoder);
         //provider.setSaltSource(saltSource());
         provider.setUserDetailsService(userService);
         AuthenticationManager authenticationManager = new ProviderManager(Arrays.asList((AuthenticationProvider) provider));
         return authenticationManager;
+    }
+
+    @Bean(name = "authenticationFilter")
+    public UsernamePasswordAuthenticationFilter authenticationFilter() throws Exception {
+        UsernamePasswordAuthenticationFilter authFilter = new RequestBodyAuthenticationFilter();
+        authFilter.setAuthenticationManager(customAuthenticationManager());
+        authFilter.setAuthenticationSuccessHandler(authenticationSuccessHandler());
+        authFilter.setAuthenticationFailureHandler(authenticationFailureHandler());
+        authFilter.setFilterProcessesUrl("/login");
+        authFilter.setUsernameParameter("a1b2c3d4");//We will be using RequestBody and not request params, so keeping parameter name to a non-sensible value.
+        authFilter.setPasswordParameter("a1b2c3d4e5");//We will be using RequestBody and not request params, so keeping this field to a non-sensible value.
+        //authFilter.setPostOnly(true);//This is handled by RequestBodyAuthenticationFilter itself. So keeping this commented.
+        return authFilter;
     }
 }

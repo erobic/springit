@@ -8,10 +8,12 @@ import com.erobic.springit.utils.DateTimeUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -25,10 +27,12 @@ public class UserService implements UserDetailsService {
     private Logger logger = LoggerFactory.getLogger(UserService.class.getSimpleName());
 
     private UserRepository userRepository;
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
+        this.bCryptPasswordEncoder = new BCryptPasswordEncoder();
     }
 
     /**
@@ -42,7 +46,7 @@ public class UserService implements UserDetailsService {
         User user = new User();
         verifyUsernameDoesNotExist(userRequest.getUsername());
         user.setUsername(userRequest.getUsername());
-        user.setPassword(userRequest.getPassword());
+        user.setPassword(bCryptPasswordEncoder.encode(userRequest.getPassword()));
         user.setRegisteredOn(DateTimeUtil.nowUTC());
         return userRepository.save(user);
     }
