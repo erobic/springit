@@ -23,4 +23,11 @@ The following topics are covered in this project:
   b. Integration Testing
   
   c. Test Coverage
-9. Checkstyle
+Uses [Jacoco plugin](https://docs.gradle.org/current/userguide/jacoco_plugin.html) to generate test coverage reports, which helps us ensure that our tests cover our source properly.
+
+9. Checkstyle:
+Uses [checkstyle plugin](https://docs.gradle.org/current/userguide/checkstyle_plugin.html) to verify that source code style adheres to a pre-defined ruleset. This enables entire team to produce code with same style.
+
+10. Static Code Analysis:
+Uses [PMD plugin](https://docs.gradle.org/current/userguide/pmd_plugin.html) to analyze the source code and ensure that it adheres to best practices/design patterns. This is vital to make sure that the quality of code written adheres to highest possible standards.
+
