@@ -59,7 +59,7 @@ jacocoTestReport {
 }
 
 checkstyle {
-    toolVersion = '6.16.1'
+    toolVersion = '6.11.2'
     config = rootProject.resources.text.fromFile('etc/checkstyle/rules.xml')
 }
 
