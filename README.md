@@ -7,8 +7,10 @@ This project demonstrates commonly used features of Spring using best practices.
 The following topics are covered in this project:
 
 **1. RESTful API:**
- 1. Jackson: Field level configuration, Handling date/time
- 2. AOP based exception handling
+ 
+ *a. Jackson:* Field level configuration, Handling date/time
+ 
+ *b. AOP:* For exception handling, security
 
 **2. Transaction Management:** Rollback on exception
 
@@ -25,11 +27,11 @@ The following topics are covered in this project:
 **8. Testing:** 
 Following best practices as mentioned in [testing improvements in spring-boot-1-4](https://spring.io/blog/2016/04/15/testing-improvements-in-spring-boot-1-4)
   
-  a. Unit Testing: For controllers, services and utils
+*a. Unit Testing:* For controllers, services and utils
   
-  b. Integration Testing: For API endpoints, services and repositories
+*b. Integration Testing:* For API endpoints, services and repositories
   
-  c. Test Coverage
+*c. Test Coverage:*
 Uses [Jacoco plugin](https://docs.gradle.org/current/userguide/jacoco_plugin.html) to generate test coverage reports, which helps us ensure that our tests cover our source properly.
 
 **9. Checkstyle:**
