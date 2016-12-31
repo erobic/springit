@@ -46,6 +46,12 @@ dependencies {
     testCompile("org.springframework.security:spring-security-test")
 }
 
+defaultTasks 'clean', 'build'
+
+springBoot {
+    executable = true
+}
+
 jacoco {
     toolVersion = '0.7.8'
 }
