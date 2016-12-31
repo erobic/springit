@@ -2,9 +2,9 @@
 
 [![Build Status](https://travis-ci.org/erobic/springit.svg?branch=master)](https://travis-ci.org/erobic/springit)
 
-This project demonstrates commonly used features of Spring using best practices. You can use this project as a boilerplate for your own Spring Boot applications! 
+This is a fully configured Spring Boot/Gradle project to develop a badass web application. After years of experience in web development, reading Spring's documentation and going through hundreds of tutorials, I have created this starter project for your use!
 
-The following topics are covered in this project:
+It follows best practices and has the following demonstrations/configurations which will ensure that the application you produce is absolutely top-notch!
 
 **1. RESTful API:**
  
