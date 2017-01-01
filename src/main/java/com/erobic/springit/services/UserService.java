@@ -5,12 +5,10 @@ import com.erobic.springit.remote_models.UserRequest;
 import com.erobic.springit.exceptions.UsernameExistsException;
 import com.erobic.springit.entities.User;
 import com.erobic.springit.repositories.UserRepository;
-import com.erobic.springit.utils.DateTimeUtil;
 import com.erobic.springit.utils.RequestContextUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -87,7 +85,7 @@ public class UserService implements UserDetailsService {
         } else {
             List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
             for (Role role : roles) {
-                GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(role.getName());
+                GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(role.getCode());
                 grantedAuthorities.add(grantedAuthority);
             }
             return grantedAuthorities;
