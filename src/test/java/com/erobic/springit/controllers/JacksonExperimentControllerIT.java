@@ -1,5 +1,7 @@
 package com.erobic.springit.controllers;
 
+import com.erobic.springit.AbstractSpringTest;
+import com.erobic.springit.TestApplication;
 import com.erobic.springit.remote_models.CreatedResponse;
 import com.erobic.springit.generator.DataGenerator;
 import com.erobic.springit.entities.JacksonExperiment;
@@ -19,9 +21,8 @@ import java.net.URL;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class JacksonExperimentControllerIT {
+public class JacksonExperimentControllerIT extends AbstractSpringTest{
     @LocalServerPort
     private int port;
 

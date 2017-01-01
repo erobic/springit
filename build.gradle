@@ -39,6 +39,8 @@ dependencies {
     compile("org.hibernate:hibernate-java8:5.1.0.Final")
 
     runtime("org.hsqldb:hsqldb")
+    runtime("mysql:mysql-connector-java")
+
     testCompile("junit:junit")
     testCompile("org.springframework.boot:spring-boot-starter-test")
     testCompile("org.springframework.security:spring-security-test")

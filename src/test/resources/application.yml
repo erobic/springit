@@ -1,4 +1,0 @@
-# Disable security
-security:
-  basic:
-    enabled: false

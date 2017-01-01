@@ -1,5 +1,6 @@
 package com.erobic.springit.services;
 
+import com.erobic.springit.AbstractSpringTest;
 import com.erobic.springit.generator.DataGenerator;
 import com.erobic.springit.entities.Disease;
 import com.erobic.springit.repositories.DiseaseRepository;
@@ -11,9 +12,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest
-public class TransactionDemoServiceTest {
+public class TransactionDemoServiceTest extends AbstractSpringTest {
     @Autowired
     TransactionDemoService transactionDemoService;
     @Autowired

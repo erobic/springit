@@ -1,5 +1,7 @@
 package com.erobic.springit.controllers;
 
+import com.erobic.springit.AbstractSpringTest;
+import com.erobic.springit.TestApplication;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,10 +17,9 @@ import java.net.URL;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ActiveProfiles(value = "securedTest")
-public class HomeControllerIT {
+public class HomeControllerIT extends AbstractSpringTest{
     @LocalServerPort
     private int port;
 

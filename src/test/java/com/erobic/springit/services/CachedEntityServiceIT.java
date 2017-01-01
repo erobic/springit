@@ -1,5 +1,6 @@
 package com.erobic.springit.services;
 
+import com.erobic.springit.AbstractSpringTest;
 import com.erobic.springit.entities.CachedEntity;
 import com.erobic.springit.repositories.CachedEntityRepository;
 import org.junit.Test;
@@ -13,9 +14,8 @@ import java.time.LocalDateTime;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest
-public class CachedEntityServiceIT {
+public class CachedEntityServiceIT extends AbstractSpringTest {
     @Autowired
     CachedEntityService cachedEntityService;
     @Autowired

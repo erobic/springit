@@ -1,5 +1,6 @@
 package com.erobic.springit.repositories;
 
+import com.erobic.springit.AbstractSpringTest;
 import com.erobic.springit.generator.DataGenerator;
 import com.erobic.springit.entities.User;
 import com.erobic.springit.utils.RequestContextUtil;
@@ -12,9 +13,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@RunWith(SpringRunner.class)
 @DataJpaTest
-public class UserRepositoryTest {
+public class UserRepositoryTest extends AbstractSpringTest{
 
     @Autowired
     private TestEntityManager entityManager;

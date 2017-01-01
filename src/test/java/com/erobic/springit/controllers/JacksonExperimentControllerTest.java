@@ -1,5 +1,6 @@
 package com.erobic.springit.controllers;
 
+import com.erobic.springit.AbstractSpringTest;
 import com.erobic.springit.generator.DataGenerator;
 import com.erobic.springit.entities.JacksonExperiment;
 import com.erobic.springit.repositories.JacksonExperimentRepository;
@@ -19,10 +20,9 @@ import static org.mockito.Matchers.isNull;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-public class JacksonExperimentControllerTest {
+public class JacksonExperimentControllerTest extends AbstractSpringTest{
 
     @Autowired
     MockMvc mvc;
