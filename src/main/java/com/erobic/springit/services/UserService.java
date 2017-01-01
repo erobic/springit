@@ -1,5 +1,6 @@
 package com.erobic.springit.services;
 
+import com.erobic.springit.entities.Role;
 import com.erobic.springit.remote_models.UserRequest;
 import com.erobic.springit.exceptions.UsernameExistsException;
 import com.erobic.springit.entities.User;
@@ -10,14 +11,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author robik
@@ -68,17 +69,27 @@ public class UserService implements UserDetailsService {
     }
 
     private UserDetails toUserDetails(User user) {
-        UserDetails userDetails = new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), defaultAuthorities());
+        UserDetails userDetails = new org.springframework.security.core.userdetails.User(
+                user.getUsername(),
+                user.getPassword(),
+                user.isEnabled(),
+                !user.isExpired(),
+                !user.isCredentialsExpired(),
+                !user.isLocked(),
+                getAuthorities(user.getRoles()));
         return userDetails;
     }
 
-    private List<GrantedAuthority> defaultAuthorities() {
-        GrantedAuthority ga = new GrantedAuthority() {
-            @Override
-            public String getAuthority() {
-                return "ROLE_USER";
+    private List<GrantedAuthority> getAuthorities(Collection<Role> roles) {
+        if (roles == null) {
+            return Collections.EMPTY_LIST;
+        } else {
+            List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
+            for (Role role : roles) {
+                GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(role.getName());
+                grantedAuthorities.add(grantedAuthority);
             }
-        };
-        return Arrays.asList(ga);
+            return grantedAuthorities;
+        }
     }
 }
