@@ -31,7 +31,6 @@ public class DataGenerator {
         User user = new User();
         user.setUsername("robik");
         user.setPassword("p@ss11ee");
-        user.setRegisteredOn(DateTimeUtil.nowUTC());
         return user;
     }
 

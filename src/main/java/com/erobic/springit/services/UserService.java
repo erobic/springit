@@ -6,6 +6,7 @@ import com.erobic.springit.exceptions.UsernameExistsException;
 import com.erobic.springit.entities.User;
 import com.erobic.springit.repositories.UserRepository;
 import com.erobic.springit.utils.DateTimeUtil;
+import com.erobic.springit.utils.RequestContextUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +49,7 @@ public class UserService implements UserDetailsService {
         verifyUsernameDoesNotExist(userRequest.getUsername());
         user.setUsername(userRequest.getUsername());
         user.setPassword(bCryptPasswordEncoder.encode(userRequest.getPassword()));
-        user.setRegisteredOn(DateTimeUtil.nowUTC());
+        RequestContextUtil.setUsername(userRequest.getUsername());
         return userRepository.save(user);
     }
 

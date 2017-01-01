@@ -3,7 +3,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.2.RELEASE")
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.3.RELEASE")
     }
 }
 
@@ -30,16 +30,14 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
-    // tag::jetty[]
     compile("org.springframework.boot:spring-boot-starter-web")
     compile("org.springframework.boot:spring-boot-starter-data-jpa")
-    // end::jetty[]
-    // tag::actuator[]
     compile("org.springframework.boot:spring-boot-starter-actuator")
     compile("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.8.5")
     compile("org.springframework.boot:spring-boot-starter-security")
     compile("org.springframework.boot:spring-boot-starter-cache")
-    // end::actuator[]
+    compile("org.hibernate:hibernate-java8:5.1.0.Final")
+
     runtime("org.hsqldb:hsqldb")
     testCompile("junit:junit")
     testCompile("org.springframework.boot:spring-boot-starter-test")

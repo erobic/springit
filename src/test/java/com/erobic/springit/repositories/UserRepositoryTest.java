@@ -2,6 +2,7 @@ package com.erobic.springit.repositories;
 
 import com.erobic.springit.generator.DataGenerator;
 import com.erobic.springit.entities.User;
+import com.erobic.springit.utils.RequestContextUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,7 @@ public class UserRepositoryTest {
     public void findByUsernameReturnsUser() throws Exception {
         //given
         User user = DataGenerator.generateUser();
+        RequestContextUtil.setUsername(user.getUsername());
         entityManager.persistAndFlush(user);
         //when
         User foundUser = userRepository.findByUsername(user.getUsername());

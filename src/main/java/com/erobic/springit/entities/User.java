@@ -4,45 +4,33 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.time.OffsetDateTime;
 import java.util.Set;
 
 /**
  * Created by robik on 12/23/16.
  */
 @Entity
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class User extends TransactionalEntity {
+    private static final long serialVersionUID = 1;
     @NotNull
     @NotEmpty
     private String username;
     @NotNull
     @NotEmpty
     private String password;
-    private OffsetDateTime registeredOn;
     @NotNull
-    private boolean enabled = true;
+    private Boolean enabled = true;
     @NotNull
-    private boolean expired = false;
+    private Boolean expired = false;
     @NotNull
-    private boolean credentialsExpired = false;
+    private Boolean credentialsExpired = false;
     @NotNull
-    private boolean locked = false;
+    private Boolean locked = false;
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "AccountRole",
             joinColumns = @JoinColumn(name = "userId", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "roleId", referencedColumnName = "id"))
     private Set<Role> roles;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getUsername() {
         return username;
@@ -60,14 +48,6 @@ public class User {
         this.password = password;
     }
 
-    public OffsetDateTime getRegisteredOn() {
-        return registeredOn;
-    }
-
-    public void setRegisteredOn(OffsetDateTime registeredOn) {
-        this.registeredOn = registeredOn;
-    }
-
     public Set<Role> getRoles() {
         return roles;
     }
@@ -76,45 +56,44 @@ public class User {
         this.roles = roles;
     }
 
-    public boolean isEnabled() {
+    public Boolean isEnabled() {
         return enabled;
     }
 
-    public void setEnabled(boolean enabled) {
+    public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
     }
 
-    public boolean isExpired() {
+    public Boolean isExpired() {
         return expired;
     }
 
-    public void setExpired(boolean expired) {
+    public void setExpired(Boolean expired) {
         this.expired = expired;
     }
 
-    public boolean isCredentialsExpired() {
+    public Boolean isCredentialsExpired() {
         return credentialsExpired;
     }
 
-    public void setCredentialsExpired(boolean credentialsExpired) {
+    public void setCredentialsExpired(Boolean credentialsExpired) {
         this.credentialsExpired = credentialsExpired;
     }
 
-    public boolean isLocked() {
+    public Boolean isLocked() {
         return locked;
     }
 
-    public void setLocked(boolean locked) {
+    public void setLocked(Boolean locked) {
         this.locked = locked;
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
+                "id=" + getId() +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", registeredOn=" + registeredOn +
                 ", enabled=" + enabled +
                 ", expired=" + expired +
                 ", credentialsExpired=" + credentialsExpired +
