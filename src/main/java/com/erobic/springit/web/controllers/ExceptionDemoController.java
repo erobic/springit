@@ -1,4 +1,4 @@
-package com.erobic.springit.controllers;
+package com.erobic.springit.web.controllers;
 
 import com.erobic.springit.exceptions.CustomException;
 import com.erobic.springit.exceptions.NotFoundException;

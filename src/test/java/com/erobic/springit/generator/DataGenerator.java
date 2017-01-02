@@ -1,10 +1,9 @@
 package com.erobic.springit.generator;
 
 import com.erobic.springit.remote_models.UserRequest;
-import com.erobic.springit.entities.Disease;
-import com.erobic.springit.entities.JacksonExperiment;
+import com.erobic.springit.entities.TransactionDemoEntity;
+import com.erobic.springit.entities.JacksonDemoEntity;
 import com.erobic.springit.entities.User;
-import com.erobic.springit.utils.DateTimeUtil;
 
 import java.time.LocalDateTime;
 
@@ -12,16 +11,16 @@ import java.time.LocalDateTime;
  * Created by robik on 12/13/16.
  */
 public class DataGenerator {
-    public static Disease generateDisease() {
-        Disease disease = new Disease();
+    public static TransactionDemoEntity generateDisease() {
+        TransactionDemoEntity transactionDemoEntity = new TransactionDemoEntity();
         LocalDateTime localDateTime = LocalDateTime.now();
-        disease.setName("name " + localDateTime);
-        disease.setDescription("description " + localDateTime);
-        return disease;
+        transactionDemoEntity.setName("name " + localDateTime);
+        transactionDemoEntity.setDescription("description " + localDateTime);
+        return transactionDemoEntity;
     }
 
-    public static JacksonExperiment generateJacksonExperiment() {
-        JacksonExperiment obj = new JacksonExperiment();
+    public static JacksonDemoEntity generateJacksonExperiment() {
+        JacksonDemoEntity obj = new JacksonDemoEntity();
         obj.setHidden("hidden field");
         obj.setCreatedOn(LocalDateTime.now());
         return obj;

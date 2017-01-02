@@ -1,7 +1,7 @@
 package com.erobic.springit.services;
 
-import com.erobic.springit.entities.Disease;
-import com.erobic.springit.repositories.DiseaseRepository;
+import com.erobic.springit.entities.TransactionDemoEntity;
+import com.erobic.springit.repositories.TransactionDemoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -12,39 +12,39 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 public class TransactionDemoService {
-    private DiseaseRepository diseaseRepository;
+    private TransactionDemoRepository transactionDemoRepository;
 
     @Autowired
-    public TransactionDemoService(DiseaseRepository diseaseRepository) {
-        this.diseaseRepository = diseaseRepository;
+    public TransactionDemoService(TransactionDemoRepository transactionDemoRepository) {
+        this.transactionDemoRepository = transactionDemoRepository;
     }
 
-    public Disease findById(Long id) {
-        Disease disease = diseaseRepository.findOne(id);
-        if (disease != null) {
-            disease.getSymptoms();
+    public TransactionDemoEntity findById(Long id) {
+        TransactionDemoEntity transactionDemoEntity = transactionDemoRepository.findOne(id);
+        if (transactionDemoEntity != null) {
+            transactionDemoEntity.getTransactionDemoEntityChildren();
         }
-        return disease;
+        return transactionDemoEntity;
     }
 
-    public Disease save(Disease disease) {
-        return diseaseRepository.save(disease);
+    public TransactionDemoEntity save(TransactionDemoEntity transactionDemoEntity) {
+        return transactionDemoRepository.save(transactionDemoEntity);
     }
 
-    public Disease nonTransactionalSave(Disease disease, boolean failTransaction) {
-        Disease disease1 = diseaseRepository.saveAndFlush(disease);
+    public TransactionDemoEntity nonTransactionalSave(TransactionDemoEntity transactionDemoEntity, boolean failTransaction) {
+        TransactionDemoEntity transactionDemoEntity1 = transactionDemoRepository.saveAndFlush(transactionDemoEntity);
         if (failTransaction) {
             throw new RuntimeException("Emulating a failed transaction!!");
         }
-        return disease1;
+        return transactionDemoEntity1;
     }
 
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false)
-    public Disease transactionalSave(Disease disease, boolean failTransaction) {
-        Disease disease1 = diseaseRepository.saveAndFlush(disease);
+    public TransactionDemoEntity transactionalSave(TransactionDemoEntity transactionDemoEntity, boolean failTransaction) {
+        TransactionDemoEntity transactionDemoEntity1 = transactionDemoRepository.saveAndFlush(transactionDemoEntity);
         if (failTransaction) {
             throw new RuntimeException("Emulating a failed transaction!!");
         }
-        return disease1;
+        return transactionDemoEntity1;
     }
 }

@@ -6,21 +6,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
- * Created by robik on 12/24/16.
+ * Created by robik on 12/12/16.
  */
 @Entity
-public class CachedEntity {
+public class TransactionDemoEntityChild {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-
-    public CachedEntity() {
-    }
-
-    public CachedEntity(String name) {
-        this.name = name;
-    }
+    private String description;
 
     public Long getId() {
         return id;
@@ -36,5 +30,13 @@ public class CachedEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

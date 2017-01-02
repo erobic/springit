@@ -1,6 +1,6 @@
-package com.erobic.springit.controllers;
+package com.erobic.springit.web.controllers;
 
-import com.erobic.springit.services.SampleInitializingBean;
+import com.erobic.springit.services.InitializingBeanDemo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -92,10 +92,10 @@ public class HomeController {
     }
 
     @Autowired
-    SampleInitializingBean sampleInitializingBean;
+    InitializingBeanDemo initializingBeanDemo;
 
     @RequestMapping(value = "/initializing_bean")
     public Boolean initializingBean() {
-        return sampleInitializingBean.getInitialized();
+        return initializingBeanDemo.getInitialized();
     }
 }

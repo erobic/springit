@@ -2,13 +2,11 @@ package com.erobic.springit.services;
 
 import com.erobic.springit.AbstractSpringTest;
 import com.erobic.springit.generator.DataGenerator;
-import com.erobic.springit.entities.Disease;
-import com.erobic.springit.repositories.DiseaseRepository;
+import com.erobic.springit.entities.TransactionDemoEntity;
+import com.erobic.springit.repositories.TransactionDemoRepository;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -17,39 +15,39 @@ public class TransactionDemoServiceTest extends AbstractSpringTest {
     @Autowired
     TransactionDemoService transactionDemoService;
     @Autowired
-    DiseaseRepository diseaseRepository;
+    TransactionDemoRepository transactionDemoRepository;
 
     @Test
     public void testTransactionalSave_shouldSaveWhenNoException() throws Exception {
         //given
-        Disease disease = DataGenerator.generateDisease();
+        TransactionDemoEntity transactionDemoEntity = DataGenerator.generateDisease();
         //when
-        Disease savedDisease = transactionDemoService.transactionalSave(disease, false);
+        TransactionDemoEntity savedTransactionDemoEntity = transactionDemoService.transactionalSave(transactionDemoEntity, false);
         //then
-        assertThat(diseaseRepository.findByName(savedDisease.getName())).isNotNull();
+        assertThat(transactionDemoRepository.findByName(savedTransactionDemoEntity.getName())).isNotNull();
     }
 
     @Test
     public void testNonTransactionalSave_shouldNotSaveWhenException() throws Exception {
         //given
-        Disease disease = DataGenerator.generateDisease();
+        TransactionDemoEntity transactionDemoEntity = DataGenerator.generateDisease();
         try {
-            transactionDemoService.transactionalSave(disease, true);
+            transactionDemoService.transactionalSave(transactionDemoEntity, true);
         } catch (Exception e) {
         }
         //then
-        assertThat(diseaseRepository.findByName(disease.getName())).isNull();
+        assertThat(transactionDemoRepository.findByName(transactionDemoEntity.getName())).isNull();
     }
 
     @Test
     public void testNonTransactionalSave_shouldSaveWhenEvenWhenException() throws Exception {
         //given
-        Disease disease = DataGenerator.generateDisease();
+        TransactionDemoEntity transactionDemoEntity = DataGenerator.generateDisease();
         try {
-            transactionDemoService.nonTransactionalSave(disease, true);
+            transactionDemoService.nonTransactionalSave(transactionDemoEntity, true);
         } catch (Exception e) {
         }
         //then
-        assertThat(diseaseRepository.findByName(disease.getName())).isNotNull();
+        assertThat(transactionDemoRepository.findByName(transactionDemoEntity.getName())).isNotNull();
     }
 }

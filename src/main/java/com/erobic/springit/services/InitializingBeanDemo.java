@@ -9,8 +9,8 @@ import org.springframework.stereotype.Component;
  * Created by robik on 12/10/16.
  */
 @Component
-public class SampleInitializingBean implements InitializingBean {
-    private static final Logger logger = LoggerFactory.getLogger(SampleInitializingBean.class);
+public class InitializingBeanDemo implements InitializingBean {
+    private static final Logger logger = LoggerFactory.getLogger(InitializingBeanDemo.class);
     private Boolean initialized = false;
 
     @Override

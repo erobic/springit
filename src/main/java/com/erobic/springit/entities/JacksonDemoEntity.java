@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
  * Created by robik on 12/16/16.
  */
 @Entity
-public class JacksonExperiment {
+public class JacksonDemoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

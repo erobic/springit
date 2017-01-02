@@ -1,28 +1,25 @@
-package com.erobic.springit.controllers;
+package com.erobic.springit.web.controllers;
 
 import com.erobic.springit.AbstractSpringTest;
-import com.erobic.springit.TestApplication;
 import com.erobic.springit.remote_models.CreatedResponse;
 import com.erobic.springit.generator.DataGenerator;
-import com.erobic.springit.entities.JacksonExperiment;
-import com.erobic.springit.repositories.JacksonExperimentRepository;
+import com.erobic.springit.entities.JacksonDemoEntity;
+import com.erobic.springit.repositories.JacksonDemoRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.embedded.LocalServerPort;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.ResponseEntity;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.net.URL;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class JacksonExperimentControllerIT extends AbstractSpringTest{
+public class JacksonDemoControllerIT extends AbstractSpringTest{
     @LocalServerPort
     private int port;
 
@@ -31,7 +28,7 @@ public class JacksonExperimentControllerIT extends AbstractSpringTest{
     @Autowired
     private TestRestTemplate template;
     @Autowired
-    JacksonExperimentRepository jacksonExperimentRepository;
+    JacksonDemoRepository jacksonDemoRepository;
     @Autowired
     ObjectMapper objectMapper;
 
@@ -43,11 +40,11 @@ public class JacksonExperimentControllerIT extends AbstractSpringTest{
     @Test
     public void testGet_shouldGetNonIgnoredFields() throws Exception {
         //given
-        JacksonExperiment obj1 = DataGenerator.generateJacksonExperiment();
-        obj1 = jacksonExperimentRepository.saveAndFlush(obj1);
+        JacksonDemoEntity obj1 = DataGenerator.generateJacksonExperiment();
+        obj1 = jacksonDemoRepository.saveAndFlush(obj1);
         //when
-        ResponseEntity<JacksonExperiment> response = template.getForEntity(base.toString() + "/" + obj1.getId(), JacksonExperiment.class);
-        JacksonExperiment afterGet = response.getBody();
+        ResponseEntity<JacksonDemoEntity> response = template.getForEntity(base.toString() + "/" + obj1.getId(), JacksonDemoEntity.class);
+        JacksonDemoEntity afterGet = response.getBody();
         //then
         assertThat(obj1.getId()).isEqualTo(afterGet.getId());
         assertThat(afterGet.getHidden()).isNull();
@@ -56,12 +53,12 @@ public class JacksonExperimentControllerIT extends AbstractSpringTest{
     @Test
     public void testCreate_shouldPopulateNonIgnoredFields() throws Exception {
         //given
-        JacksonExperiment obj = DataGenerator.generateJacksonExperiment();
+        JacksonDemoEntity obj = DataGenerator.generateJacksonExperiment();
         //when
         Long id = template.postForEntity(base.toString(), obj, CreatedResponse.class).getBody().getId();
         //then
         assertThat(id).isNotNull();
-        JacksonExperiment saved = jacksonExperimentRepository.findOne(id);
+        JacksonDemoEntity saved = jacksonDemoRepository.findOne(id);
         assertThat(saved.getCreatedOn()).isEqualTo(obj.getCreatedOn());
         assertThat(saved.getHidden()).isNullOrEmpty();
     }

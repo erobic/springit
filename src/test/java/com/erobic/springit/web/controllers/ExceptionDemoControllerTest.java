@@ -1,6 +1,7 @@
-package com.erobic.springit.controllers;
+package com.erobic.springit.web.controllers;
 
 import com.erobic.springit.AbstractSpringTest;
+import com.erobic.springit.web.controllers.ExceptionDemoController;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;

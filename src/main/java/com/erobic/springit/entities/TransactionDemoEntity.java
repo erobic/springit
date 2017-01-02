@@ -7,14 +7,14 @@ import java.util.List;
  * Created by robik on 12/12/16.
  */
 @Entity
-public class Disease {
+public class TransactionDemoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String description;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Symptom> symptoms;
+    private List<TransactionDemoEntityChild> transactionDemoEntityChildren;
 
     public Long getId() {
         return id;
@@ -40,11 +40,11 @@ public class Disease {
         this.description = description;
     }
 
-    public List<Symptom> getSymptoms() {
-        return symptoms;
+    public List<TransactionDemoEntityChild> getTransactionDemoEntityChildren() {
+        return transactionDemoEntityChildren;
     }
 
-    public void setSymptoms(List<Symptom> symptoms) {
-        this.symptoms = symptoms;
+    public void setTransactionDemoEntityChildren(List<TransactionDemoEntityChild> transactionDemoEntityChildren) {
+        this.transactionDemoEntityChildren = transactionDemoEntityChildren;
     }
 }

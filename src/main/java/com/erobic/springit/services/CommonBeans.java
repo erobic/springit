@@ -1,4 +1,4 @@
-package com.erobic.springit.config;
+package com.erobic.springit.services;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

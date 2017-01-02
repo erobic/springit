@@ -1,4 +1,4 @@
-package com.erobic.springit.controllers;
+package com.erobic.springit.web.controllers;
 
 import com.erobic.springit.AbstractSpringTest;
 import com.erobic.springit.TestApplication;

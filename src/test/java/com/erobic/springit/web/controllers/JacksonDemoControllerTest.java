@@ -1,16 +1,14 @@
-package com.erobic.springit.controllers;
+package com.erobic.springit.web.controllers;
 
 import com.erobic.springit.AbstractSpringTest;
 import com.erobic.springit.generator.DataGenerator;
-import com.erobic.springit.entities.JacksonExperiment;
-import com.erobic.springit.repositories.JacksonExperimentRepository;
+import com.erobic.springit.entities.JacksonDemoEntity;
+import com.erobic.springit.repositories.JacksonDemoRepository;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -22,19 +20,19 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class JacksonExperimentControllerTest extends AbstractSpringTest{
+public class JacksonDemoControllerTest extends AbstractSpringTest{
 
     @Autowired
     MockMvc mvc;
     @MockBean
-    JacksonExperimentRepository repository;
+    JacksonDemoRepository repository;
 
     @Test
     public void testGet_shouldReturnOk() throws Exception {
         //given
         Long id = 11l;
-        JacksonExperiment jacksonExperiment = DataGenerator.generateJacksonExperiment();
-        given(repository.findOne(id)).willReturn(jacksonExperiment);
+        JacksonDemoEntity jacksonDemoEntity = DataGenerator.generateJacksonExperiment();
+        given(repository.findOne(id)).willReturn(jacksonDemoEntity);
         //when and then
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get("/jackson/" + id))
                 .andExpect(status().isOk())

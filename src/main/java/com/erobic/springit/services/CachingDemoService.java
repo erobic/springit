@@ -1,7 +1,7 @@
 package com.erobic.springit.services;
 
-import com.erobic.springit.entities.CachedEntity;
-import com.erobic.springit.repositories.CachedEntityRepository;
+import com.erobic.springit.entities.CachingDemoEntity;
+import com.erobic.springit.repositories.CachingDemoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
@@ -13,41 +13,41 @@ import org.springframework.stereotype.Service;
  * However since entities are cached, when using this service, the delay should have no effect!
  * Created by robik on 12/24/16.
  */
-@Service("cachedEntityService")
-public class CachedEntityService {
+@Service("cachingDemoService")
+public class CachingDemoService {
 
     public static final Long DELAY = 2000l;
-    private CachedEntityRepository cachedEntityRepository;
+    private CachingDemoRepository cachingDemoRepository;
 
     @Autowired
-    public CachedEntityService(CachedEntityRepository cachedEntityRepository) {
-        this.cachedEntityRepository = cachedEntityRepository;
+    public CachingDemoService(CachingDemoRepository cachingDemoRepository) {
+        this.cachingDemoRepository = cachingDemoRepository;
     }
 
     @CachePut(value = "cachedEntities", key = "#result.id")
-    public CachedEntity create(CachedEntity entity) {
-        return cachedEntityRepository.save(entity);
+    public CachingDemoEntity create(CachingDemoEntity entity) {
+        return cachingDemoRepository.save(entity);
     }
 
     @CachePut(value = "cachedEntities", key = "#cachedEntity.id")
-    public CachedEntity update(CachedEntity entity) {
-        return cachedEntityRepository.save(entity);
+    public CachingDemoEntity update(CachingDemoEntity entity) {
+        return cachingDemoRepository.save(entity);
     }
 
     @Cacheable(value = "cachedEntities", key = "#id")
-    public CachedEntity findOne(Long id) {
+    public CachingDemoEntity findOne(Long id) {
         emulateDelay();
-        return cachedEntityRepository.findOne(id);
+        return cachingDemoRepository.findOne(id);
     }
 
-    public CachedEntity findOneBypassingCache(Long id){
+    public CachingDemoEntity findOneBypassingCache(Long id){
         emulateDelay();
-        return cachedEntityRepository.findOne(id);
+        return cachingDemoRepository.findOne(id);
     }
 
     @CacheEvict(value = "cachedEntities", key = "#id")
     public void delete(Long id) {
-        cachedEntityRepository.delete(id);
+        cachingDemoRepository.delete(id);
     }
 
     @CacheEvict(value = "cachedEntities", allEntries = true)

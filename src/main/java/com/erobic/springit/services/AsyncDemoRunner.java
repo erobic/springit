@@ -1,4 +1,4 @@
-package com.erobic.springit.command_line_runner;
+package com.erobic.springit.services;
 
 import com.erobic.springit.remote_models.GithubUser;
 import com.erobic.springit.services.AsyncDemoService;

@@ -6,15 +6,21 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
- * Created by robik on 12/12/16.
+ * Created by robik on 12/24/16.
  */
 @Entity
-public class Symptom {
+public class CachingDemoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String description;
+
+    public CachingDemoEntity() {
+    }
+
+    public CachingDemoEntity(String name) {
+        this.name = name;
+    }
 
     public Long getId() {
         return id;
@@ -30,13 +36,5 @@ public class Symptom {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 }

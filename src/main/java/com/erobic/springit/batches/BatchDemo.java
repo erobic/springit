@@ -1,4 +1,4 @@
-package com.erobic.springit.jobs;
+package com.erobic.springit.batches;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,16 +11,16 @@ import org.springframework.stereotype.Component;
  * Created by robik on 12/30/16.
  */
 @Component
-@Profile("job")
-public class SchedulerDemoJob {
+@Profile("production")
+public class BatchDemo {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @Scheduled(cron = "${schedulerDemoJob.cron}")
+    @Scheduled(cron = "${batch.cron}")
     public void cronJob() {
         logger.info("Publishing new research results...");
     }
 
-    @Scheduled(fixedDelayString = "${schedulerDemoJob.fixedDelayString}")
+    @Scheduled(fixedDelayString = "${batch.fixedDelayString}")
     public void fixedDelayJob() throws InterruptedException {
         logger.info("Delayed by 10 seconds, sleeping for 20 seconds");
         Thread.sleep(20000l);
