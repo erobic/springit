@@ -27,7 +27,7 @@ public class User extends TransactionalEntity {
     @NotNull
     private Boolean locked = false;
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(name = "AccountRole",
+    @JoinTable(name = "UserRole",
             joinColumns = @JoinColumn(name = "userId", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "roleId", referencedColumnName = "id"))
     private Set<Role> roles;
